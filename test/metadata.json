@@ -1,0 +1,46 @@
+[
+  {
+    "id": "1",
+    "metaData": {
+      "name": "twoSum",
+      "params": [
+        {
+          "name": "nums",
+          "type": "integer[]"
+        },
+        {
+          "name": "target",
+          "type": "integer"
+        }
+      ],
+      "return": {
+        "type": "integer[]",
+        "size": 2
+      },
+      "manual": false
+    },
+    "testCases": [
+      {
+        "params": [
+          {
+            "value": [
+              2,
+              7,
+              11,
+              15
+            ]
+          },
+          {
+            "value": 9
+          }
+        ],
+        "return": {
+          "value": [
+            0,
+            1
+          ]
+        }
+      }
+    ]
+  }
+]
