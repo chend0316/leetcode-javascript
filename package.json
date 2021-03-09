@@ -11,6 +11,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "eslint": "^7.21.0",
     "lodash": "^4.17.21"
   },
   "devDependencies": {
