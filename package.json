@@ -4,14 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "jest --watchAll --rootDir ./test/",
-    "test": "jest"
+    "start": "jest --watchAll ./test/run.js",
+    "snapshot": "node ./test/snapshot.js",
+    "test": "jest",
+    "scrapy": "node ./scrapy/index.js"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "dependencies": {
     "eslint": "^7.21.0",
+    "glob": "^7.1.6",
     "lodash": "^4.17.21"
   },
   "devDependencies": {
