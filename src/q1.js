@@ -8,7 +8,7 @@ var twoSum = function(nums, target) {
   for (var i = 0; i < nums.length; i++) {
     const num = nums[i];
     if (expect.has(num)) {
-      return [i, expect.get(num)];
+      return [expect.get(num), i];
     }
     expect.set(target - num, i);
   }

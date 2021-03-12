@@ -1,25 +1,26 @@
-const fs = require('fs');
-const path = require('path');
-
-module.exports.saveSnapshot = function (snapshot) {
-  fs.writeFileSync(path.join(__dirname, 'snapshot.json'), snapshot);
+module.exports.stringify = function (type, val) {
+  if (type === 'string') {
+    return `"${val}"`;
+  } else if (type === 'integer') {
+    return `${val}`;
+  } else if (type === 'integer[]') {
+    return `[${val.join(',')}]`;
+  } else if (type.match(/list<(.+)>/)) {
+    return `[${val.map(e => this.stringifyResult(type.match(/list<(.+)>/)[1], e)).join(',')}]`;
+  }
+  throw new Error(`meta.type 暂不支持`);
 };
 
-module.exports.converter = {
-  'string': {
-    parse: (str) => str.substring(1, str.length - 1),
-    stringify: (value) => `"${value}"`
-  },
-  'integer': {
-    parse: (str) => Number.parseInt(str),
-    stringify: (value) => `${value}`
-  },
-  'integer[]': {
-    parse: (str) => str.substring(1, str.length - 1).split(',').map((s) => Number.parseInt(s)),
-    stringify: (value) => '[' + value.join(',') + ']'
-  },
-  'list<string>': {
-    parse: (str) => str.substring(1, str.length - 1).split(',').map(s => s.substring(1, s.length - 1)),
-    stringify: (value) => '[' + value.map(v => `"${v}"`).join(',') + ']'
+module.exports.parse = function (type, str) {
+  if (type === 'string') {
+    return str.substring(1, str.length - 1);
+  } else if (type === 'integer') {
+    return Number.parseInt(str);
+  } else if (type === 'integer[]') {
+    return str.substring(1, str.length - 1).split(',').map((s) => Number.parseInt(s));
+  } else if (type.match(/list<(.+)>/)) {
+    return str.substring(1, str.length - 1).split(',').map(s => this.parseParam(type.match(/list<(.+)>/)[1], s));
   }
+
+  throw new Error(`meta.type 暂不支持`);
 };

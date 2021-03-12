@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "jest --watchAll ./test/run.js",
-    "snapshot": "node ./test/snapshot.js",
+    "start": "jest --watchAll ./test/",
     "test": "jest",
     "scrapy": "node ./scrapy/index.js"
   },
