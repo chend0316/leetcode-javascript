@@ -1,6 +1,8 @@
 module.exports.stringify = function (type, val) {
   if (type === 'string') {
     return `"${val}"`;
+  } else if (type === 'boolean') {
+    return val === true ? 'true' : 'false';
   } else if (type === 'integer') {
     return `${val}`;
   } else if (type === 'integer[]') {
@@ -14,6 +16,8 @@ module.exports.stringify = function (type, val) {
 module.exports.parse = function (type, str) {
   if (type === 'string') {
     return str.substring(1, str.length - 1);
+  } else if (type === 'boolean') {
+    return str === 'true';
   } else if (type === 'integer') {
     return Number.parseInt(str);
   } else if (type === 'integer[]') {
