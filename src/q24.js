@@ -21,8 +21,7 @@ var swapPairs = function(head) {
     p.next.next = p;
     pre.next = p.next;
     p.next = post;
-    pre = p;
-    p = post;
+    [pre, p] = [p, post];
   }
   return dummy.next;
 };
